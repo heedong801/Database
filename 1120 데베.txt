@@ -1,0 +1,40 @@
+1120 DB
+
+질의 : 이씨 성을 가진 사원들의 이름, 직급, 소속, 부서번호를 검색하라
+
+i)원래 안됨 왜냐하면 이씨성 이건 지난번 얘기했던 서울시에 이벤트 하는 것과 똑같이 미리 다치로 만들어놨어야 함
+즉 스키마의 변경 => 비용이 큼
+
+질의 : 직급이 과장, 부서번호 1 사원에 이름, 급여
+
+SELECT EMPNAME, SALARY		쉼표 인거 잊지 말기
+FROM  EMPLOYEE
+WHERE TITLE = '과장' AND DNO = '1'; 세미클론 잊어먹지 말기
+
+질의 : 직급이 과장 이면서 1번 부서에 속하지 않은 사람들의 이름과 급여를 검색하라
+
+SELECT EMPNAME, SALARY
+FROM  EMPLOYEE
+WHERE TITLE = '과장' AND NOT DNO = '1';
+
+질의 : 1번 부서나 3번 부서에 소속된 사원들에 관한 모든 정보 in 연산자 쓰기
+
+SELECT *
+FROM EMPLOYEE
+WHERE DNO IN (1,3);
+
+질의 : 직급이 과장인 사원들에 대하여 이름과, 현재의 급여, 급여가 10퍼 인상됐을 때의 값을 검색하라.
+
+SELECT EMPNAME, SALARY, SALARY * 1.1
+FROM EMPLOYEE
+WHERE TITLE = '과장';
+
+널값은 비교 연산이 안됨
+고로 같은 null 이라고 해서 같은 것도 다른 것도 아니라 그냥 비교가 안된다는 소리
+
+질의 : 2번 부서에 근무하는 사원들의 급여, 직급, 이름을 검색하여 급여의 오름차순으로 정렬하라
+
+SELECT SALARY, TITLE, EMPNAME
+FROM   EMPLOYEE
+WHERE  DNO = 2
+ORDER BY SALARY;    (디폴트 값 ASC 오름차순 정렬)
